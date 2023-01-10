@@ -23,6 +23,7 @@ RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && \
                   cd /home/ubuntu/agilex_ws/src && \
                   git clone https://github.com/agilexrobotics/ugv_sdk.git &&\
                   git clone https://github.com/agilexrobotics/tracer_ros.git &&\
+		  git clone https://github.com/aws-robotics/aws-robomaker-bookstore-world &&\
                   cd .. &&\
                   catkin_make"
 
