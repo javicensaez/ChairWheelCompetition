@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  ros1:
+    build:
+      context: ./
+      dockerfile: .
+    environment:
+        - TZ=UTC 
+        - SIZEW=1920 
+        - SIZEH=1080 
+        - REFRESH=60 
+        - DPI=96 
+        - CDEPTH=24 
+        - PASSWD=mypasswd 
+        - WEBRTC_ENCODER=nvh264enc 
+        - NOVNC_ENABLE=true 
+        - BASIC_AUTH_PASSWORD=mypasswd     
+        - PYTHONUNBUFFERED=1  
+    ports:
+      - "6080:6080"
+      - "8080:8080"
+      - "10100:10100"
+      - "5900:5900"
+    volumes:
+      - "./catkin_ws:/home/ubuntu/catkin_ws"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]    
